@@ -78,7 +78,42 @@ class User:
     ):
         users = []
 
+        if not os.path.exists(file_path):   #Создаем файл если его нет
+            if not os.path.exists("users"):
+                os.mkdir("users")
+            index = 0
+            username =  str("Admin")
+            ####OOP
+            user = User(username)
+            user.index = index
+            ####OOP
+            firstname = str("Dmitrii")
+            ####OOP
+            user.firstname = firstname
+            ####OOP
+            surname = str("Gendik")
+            ####OOP
+            user.surname = surname
+            ####OOP
+            dob = str("07-10-1996")
+            dob = datetime.strptime(dob,"%d-%m-%Y")#(dob, "%Y-%m-%d)
+            dob = str(dob.date())
+            ####OOP
+            user.date_of_birth = dob
+            ####OOP
+            email = str("dmitriigendik@yandеx.ru")
+            ####OOP
+            user.email = email
+            ###OOP
+            password = str(bcrypt.hashpw(b'0000',bcrypt.gensalt()))
+            ###OOP
+            user.password = password
+            ###OOP
+            printer = list(user.__dict__.values())
 
+            with open(file_path,'w', encoding='utf-8') as file:
+                file.write(f"{','.join(map(str, printer))}\n")
+                
         if os.path.exists(file_path):
 
             with open(
@@ -150,6 +185,41 @@ class User:
 
     @classmethod
     def authenticate(cls,file_path, username,password,):
+        if not os.path.exists(file_path):   #Создаем файл если его нет
+                    if not os.path.exists("users"):
+                        os.mkdir("users")
+                    index = 0
+                    username =  str("Admin")
+                    ####OOP
+                    user = User(username)
+                    user.index = index
+                    ####OOP
+                    firstname = str("Dmitrii")
+                    ####OOP
+                    user.firstname = firstname
+                    ####OOP
+                    surname = str("Gendik")
+                    ####OOP
+                    user.surname = surname
+                    ####OOP
+                    dob = str("07-10-1996")
+                    dob = datetime.strptime(dob,"%d-%m-%Y")#(dob, "%Y-%m-%d)
+                    dob = str(dob.date())
+                    ####OOP
+                    user.date_of_birth = dob
+                    ####OOP
+                    email = str("dmitriigendik@yandеx.ru")
+                    ####OOP
+                    user.email = email
+                    ###OOP
+                    password = str(bcrypt.hashpw(b'0000',bcrypt.gensalt()))
+                    ###OOP
+                    user.password = password
+                    ###OOP
+                    printer = list(user.__dict__.values())
+        
+                    with open(file_path,'w', encoding='utf-8') as file:
+                        file.write(f"{','.join(map(str, printer))}\n")
         with open(file_path,'r',encoding='utf-8') as file:
             for line in file:
                 data = line.strip().split(",") 
